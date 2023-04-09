@@ -1,0 +1,44 @@
+{
+    "name": "t1nkl/b2broker-test-task",
+    "description": "Financial transactions system",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Kyryll Kovalenko",
+            "email": "kyryll.kovalenko@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpcompatibility/php-compatibility": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "FTS\\": "src/"
+        },
+        "files": [
+            "./src/Helpers/helpers.php"
+        ]
+    },
+    "prefer-stable" : true,
+    "scripts": {
+        "post-install-cmd": [
+            "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+        ],
+        "post-update-cmd" : [
+            "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+        ],
+        "phpstan":  "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "phpcs" : "./vendor/bin/phpcs -p ./src --standard=PHPCompatibility -d error_reporting=\"E_ALL&~E_DEPRECATED\"",
+        "phpcbf" : "./vendor/bin/phpcbf -p ./src --standard=PHPCompatibility -d error_reporting=\"E_ALL&~E_DEPRECATED\"",
+        "validate": [
+            "@phpstan",
+            "@phpcs",
+            "@phpcbf"
+        ]
+    }
+}

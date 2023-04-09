@@ -1,0 +1,8 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    ignoreErrors:
+        -
+            message: '#is never read, only written#'
+            path: src/Transactions/Transfer.php

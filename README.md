@@ -1,4 +1,4 @@
-# Test Task for PHP developers.
+# B2Broker test task
 
 
 
